@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br" id="boody">
+    <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senha</title>
+</head>
+<body align="middle">
+    <h1 id="h0" class="normal">O que você deseja fazer?</h1>
+    <button id="criarSenhaButton" class="normal" onclick="criarNovaSenha()">Criar nova senha</button><button id="entrarEmLogin" class="normal" onclick="logar()">Fazer login</button>
+    <h1 id="h1" class="hide">Defina sua senha</h1>
+    <h2 id="h2" class="hide">No mínimo 1 e no máximo 3 caracteres (apenas letras e números)</h2>
+    <input id="senha" class="hide" type="password"><button onclick="enviar()" id="botao1" class="hide">Enviar</button>
+    <h1 id="h3" class="hide">Entrar com a senha</h1>
+    <input id="entrarSenha" class="hide" type="password"><button onclick="verificarSenha()" id="botao2" class="hide">Enviar</button>
+    <h1 id="h4" class="hide">Logado com sucesso.</h1>
+
+    <script>
+        function criarNovaSenha(){
+            document.getElementById("h0").className = ("hide")
+            document.getElementById("criarSenhaButton").className = ("hide")
+            document.getElementById("entrarEmLogin").className = ("hide")
+            document.getElementById("h1").className = ("normal")
+            document.getElementById("h2").className = ("normal")
+            document.getElementById("senha").className = ("normal")
+            document.getElementById("botao1").className = ("normal")
+        }
+
+        function logar(){
+            document.getElementById("h0").className = ("hide")
+            document.getElementById("criarSenhaButton").className = ("hide")
+            document.getElementById("entrarEmLogin").className = ("hide")
+            document.getElementById("h1").className = ("hide")
+            document.getElementById("h2").className = ("hide")
+            document.getElementById("senha").className = ("hide")
+            document.getElementById("botao1").className = ("hide")
+            document.getElementById("h3").className = ("normal")
+            document.getElementById("entrarSenha").className = ("normal")
+            document.getElementById("botao2").className = ("normal")
+        }
+
+        function enviar(){
+            var senhaVar = document.getElementById("senha").value
+            if ((senhaVar.length >= 1) && (senhaVar.length <= 3)){
+                localStorage.setItem("senha", senhaVar);
+                document.getElementById("h1").className = ("hide")
+                document.getElementById("h2").className = ("hide")
+                document.getElementById("senha").className = ("hide")
+                document.getElementById("botao1").className = ("hide")
+                location.reload()
+            } else {
+                /* alert("Reveja os dados informados!") */
+            }
+        }
+        
+        function pedirSenha(){
+            document.getElementById("h3").className = ("normal")
+            document.getElementById("entrarSenha").className = ("normal")
+            document.getElementById("botao2").className = ("normal")
+        }
+
+        function verificarSenha(){
+            var senha = document.getElementById("entrarSenha").value
+            if (senha == localStorage.getItem("senha")){
+                document.getElementById("h0").className = ("hide")
+                document.getElementById("entrarEmLogin").className = ("hide")
+                document.getElementById("criarSenhaButton").className = ("hide")
+                document.getElementById("h3").className = ("hide")
+                document.getElementById("entrarSenha").className = ("hide")
+                document.getElementById("botao2").className = ("hide")
+                document.getElementById("boody").className = ("wrapper")
+                document.getElementById("h4").className = ("win")
+            }else{
+                /* alert("Senha incorreta...") */
+            }
+        }
+    </script>
+</body>
+</html>
